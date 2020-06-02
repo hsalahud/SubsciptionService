@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Subscribers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand disabled" href="#">Quick Navigation</a>
+    <button class="navbar-toggler disabled" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribe">Subscribe Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/unsubscribe">Unsubscribe Page</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/subscribers">Subscriber Management System Page(View All Subscribers)<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mx-auto" style="width:1000px;">
+    <div class="container mx-auto m-b-15" style="width:800px; margin-bottom: 60px;">
+        <h1 class="m-b-5">Subscription Management System</h1>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="=col">Delete Subscriber</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="subscriber:${subscribers}">
+            <th scope="row" th:text="${subscriber.getId()}"></th>
+            <td th:text="${subscriber.getName()}"></td>
+            <td th:text="${subscriber.getEmail()}"></td>
+            <td>
+                <form action="#" th:action="@{'/unsubscribe/{id}'(id=${subscriber.getId()})}" th:method="post" >
+                    <input type="hidden" name="_method" value="delete" />
+                    <button th:id="${subscriber.getId()}" class="btn btn-primary btn-lg btn-danger btn-sm">Delete Subscriber</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscription Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand disabled" href="#">Quick Navigation</a>
+    <button class="navbar-toggler disabled" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/subscribe">Subscribe Page<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/unsubscribe">Unsubscribe Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/subscribers">Subscriber Management System Page(View All Subscribers)</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="container mx-auto m-b-15" style="width:800px; margin-bottom: 60px;">
+        <h1 class="m-b-5">Welcome To Our Subscription Service</h1>
+    </div>
+    <div class="container mx-auto" style="width:1000px;">
+        <h4 class = "mx-auto m-b-1">Fill out the form below to subscribe:</h4>
+        <form th:action="@{/subscribe}" th:object="${subscriber}" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Keeanu Reeves" th:field="*{name}"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="kreeves@mail.com" th:field="*{email}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
